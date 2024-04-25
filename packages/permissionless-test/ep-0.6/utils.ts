@@ -8,6 +8,7 @@ import {
     SmartAccountSigner,
     signerToBiconomySmartAccount,
     signerToEcdsaKernelSmartAccount,
+    signerToNaniSmartAccount,
     signerToSafeSmartAccount,
     signerToSimpleSmartAccount
 } from "permissionless/accounts"
@@ -27,10 +28,12 @@ import {
     Hex,
     Transport,
     WalletClient,
+    concatHex,
     createPublicClient,
     createWalletClient,
     defineChain,
     encodeFunctionData,
+    numberToHex,
     parseEther
 } from "viem"
 import { privateKeyToAccount } from "viem/accounts"
@@ -165,6 +168,24 @@ export const getSignerToBiconomyAccount = async (
         entryPoint: getEntryPoint(),
         signer: signer,
         index: index
+    })
+}
+
+export const getSignerToNaniAccount = async ({
+    address,
+    salt
+}: { address?: Address; salt?: Hex }) => {
+    if (!process.env.TEST_PRIVATE_KEY)
+        throw new Error("TEST_PRIVATE_KEY environment variable not set")
+
+    const publicClient = getPublicClient()
+    const signer = privateKeyToAccount(process.env.TEST_PRIVATE_KEY as Hex)
+
+    return await signerToNaniSmartAccount(publicClient, {
+        entryPoint: getEntryPoint(),
+        signer: signer,
+        address,
+        salt
     })
 }
 

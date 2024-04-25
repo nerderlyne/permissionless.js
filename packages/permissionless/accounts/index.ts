@@ -39,6 +39,17 @@ import {
 } from "./biconomy/privateKeyToBiconomySmartAccount"
 
 import {
+    type NaniSmartAccount,
+    type SignerToNaniSmartAccountParameters,
+    signerToNaniSmartAccount
+} from "./nani/signerToNaniSmartAccount"
+
+import {
+    type PrivateKeyToNaniSmartAccountParameters,
+    privateKeyToNaniSmartAccount
+} from "./nani/privateKeyToNaniSmartAccount"
+
+import {
     SignTransactionNotSupportedBySmartAccount,
     type SmartAccount,
     type SmartAccountSigner
@@ -69,5 +80,10 @@ export {
     type PrivateKeyToSafeSmartAccountParameters,
     type SignerToEcdsaKernelSmartAccountParameters,
     type SignerToBiconomySmartAccountParameters,
-    type PrivateKeyToBiconomySmartAccountParameters
+    type PrivateKeyToBiconomySmartAccountParameters,
+    type NaniSmartAccount,
+    type SignerToNaniSmartAccountParameters,
+    signerToNaniSmartAccount,
+    privateKeyToNaniSmartAccount,
+    type PrivateKeyToNaniSmartAccountParameters
 }
